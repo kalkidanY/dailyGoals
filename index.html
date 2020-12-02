@@ -1,16 +1,396 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
 </head>
 
 <body>
-    <h1>
-        my first git project is amazing
-    </h1>
+    <style>
+        #dom {
+            padding-top: 15px;
+            background-color: whitesmoke;
+        }
+        
+        .container {
+            height: 100px;
+        }
+        
+        .h3 {
+            padding: 10px;
+            position: relative;
+            top: 150px;
+            z-index: 3;
+            text-align: center;
+        }
+        
+        #dom div {
+            margin: 20px;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            background-color: white;
+        }
+        
+        #dom div h4 {
+            padding: 10px;
+            padding-top: 5px;
+        }
+        
+        #dom div p {
+            font-weight: 400;
+            padding: 10px;
+        }
+        
+        #tooltip {
+            display: none;
+            position: fixed;
+            width: 100%;
+            z-index: 4;
+            bottom: 70px;
+            color: rgb(24, 167, 24);
+            text-align: center;
+        }
+        
+        #important {
+            opacity: 0.25;
+            display: flex;
+            margin-top: 0px;
+            animation: important 0.5s ease-out 0s;
+            flex-direction: row-reverse;
+            justify-content: right;
+            text-align: center;
+        }
+        
+        #important button {
+            width: 60px;
+            box-shadow: none;
+            text-shadow: none;
+            padding: 2px;
+            outline: none;
+            font-size: 13px;
+        }
+        
+        @keyframes important {
+            0% {
+                opacity: 0;
+            }
+        }
+        
+        .true {
+            color: rgb(200, 200, 200);
+        }
+        
+        #important .true {
+            display: none;
+            opacity: 0;
+        }
+        
+        .center {
+            position: fixed;
+            top: 150px;
+            width: 100%;
+            display: block;
+            z-index: 3;
+        }
+        
+        #form {
+            filter: invert(5%);
+            text-align: left;
+            padding: 5px;
+            background: white;
+            z-index: 3;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            width: 300px;
+        }
+        
+        .close {
+            position: relative;
+            float: right;
+            top: 0px;
+            transform: rotate(45deg);
+            font-weight: 700;
+            font-family: Robotothin;
+            box-shadow: none;
+            outline: none;
+        }
+        
+        .close:focus {
+            background-color: black;
+            border-radius: 50px;
+            color: white;
+        }
+        
+        #form h3 {
+            text-align: center;
+            padding: 10px;
+            border-bottom: 1px solid rgb(220, 220, 220);
+        }
+        
+        form {
+            padding: 15px;
+            background-color: white;
+        }
+        
+        button {
+            border: none;
+            background-color: white;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+        
+        form input {
+            width: 90%;
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+        
+        * {
+            margin: 0px;
+            font-family: cursive;
+            font-size: 17px;
+            transition-duration: 1s;
+        }
+        
+        body {
+            background-color: whitesmoke;
+            padding-bottom: 30px;
+        }
+        
+        header {
+            box-shadow: 0px 0px 10px gray;
+            background-color: whitesmoke;
+            position: sticky;
+            top: 0px;
+        }
+        
+        .title {
+            display: inline-block;
+            padding: 10px;
+        }
+        
+        .addbtn {
+            z-index: 2;
+            font-family: none;
+            background: black;
+            font-size: 22px;
+            font-weight: 400;
+            border-radius: 100px;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border: none;
+            outline: none;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+        
+        .day {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .day div {
+            width: 20%;
+            padding-top: 10px;
+            padding-bottom: 5px;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+    <button class="addbtn" onclick="openAdder()">+</button>
+
+    <header class=".header">
+        <h3 class="title">my tasks</h3>
+    </header>
+
+    <div class="day">
+        <div id="1" onclick="switchDay(this)">Mon</div>
+        <div id="2" onclick="switchDay(this)">Tue</div>
+        <div id="3" onclick="switchDay(this)">Wed</div>
+        <div id="4" onclick="switchDay(this)">Thu</div>
+        <div id="5" onclick="switchDay(this)">Fri</div>
+        <div id="6" onclick="switchDay(this)">Sat</div>
+        <div id="0" onclick="switchDay(this)">Sun</div>
+    </div>
+
+    <center class="center">
+        <div id="form">
+            <button class="close" onclick="closeAdder()">+</button>
+
+            <h3>Add a task</h3>
+            <form name='added'>
+                <div>title</div>
+                <input type="text" placeholder="title" name="title">
+                <div>goal</div>
+                <input type="text" placeholder="goal" name="goal">
+                <input type="hidden" name="id">
+            </form>
+            <center>
+                <button style="margin-bottom: 10px;padding: 5px; width: 100px; " onclick="addTask()">save</button>
+            </center>
+        </div>
+    </center>
+
+    <div id="dom">
+
+    </div>
+    <div id="tooltip">task copied to task adder</div>
+    <script>
+        var $id = function(a) {
+            return document.getElementById(a);
+        };
+        var title, goal, day;
+        var editMode = true;
+        var dayToString = function() {
+            var day = new Date();
+            day = day.getDay();
+            var daysOfTheWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            return daysOfTheWeek[day];
+        };
+        if (localStorage.getItem('random') === null) {
+            localStorage.setItem('random', 0);
+        }
+        var used = JSON.parse(localStorage.getItem('random'));
+        var backColoror = function() {
+            var day = new Date;
+            day = day.getDay();
+            $id("" + day).style.backgroundColor = 'rgba(100,200,255,0.4)';
+        };
+        backColoror();
+        day = dayToString();
+        $id('form').style.display = 'none';
+        var openAdder = function() {
+            var h3 = document.querySelector('.h3');
+            editMode = false;
+            $id('form').style.display = 'block';
+            if (h3)
+                h3.style.display = 'none';
+        };
+        var closeAdder = function() {
+            var h3 = document.querySelector('.h3');
+            $id('form').style.display = 'none';
+            if (h3)
+                h3.style.display = 'block';
+        };
+        var storage = localStorage;
+        var randomId = function() {
+            var other = JSON.parse(localStorage.getItem('random')) + 1;
+            localStorage.setItem('random', other);
+            return "id-" + JSON.parse(localStorage.getItem('random'));
+        };
+        var updateDOM = function(param) {
+            var getStored = localStorage.getItem(param);
+            if (getStored === null || getStored === '[]') {
+                $id('dom').innerHTML = '<h3 class="h3">add something</h3>';
+            } else {
+                var dom = JSON.parse(getStored);
+                dom = dom.sort(function(a, b) {
+                    return a.completed - b.completed;
+                });
+                var domo_1 = '';
+                dom.map(function(data) {
+                    return domo_1 += "\n        <div  onmouseover='displayOption(this)' onmouseout='undesplayOption(this)' id=" + data.id + " class=\"" + data.completed + "\">\n        <h4>" + data.title + "</h4>\n        <p>My goal: " + data.goal + "</p>\n\n        \n        <section id='important' >\n        <button class=\"" + data.completed + "\" onclick='taskComplited(\"" + data.id + "\",\"" + param + "\")'>completed</button>\n        <button class=\"" + data.completed + "\" onclick='copyTask(\"" + data.id + "\",\"" + param + "\")'>copy</button>\n        <button class=\"" + data.completed + "\" onclick='editClicked(\"" + data.id + "\",\"" + param + "\")'>edit</button>\n        <button onclick='deleteTask(\"" + data.id + "\",\"" + param + "\")'>delete</button>\n        </section>\n\n        </div>\n        ";
+                });
+                $id('dom').innerHTML = domo_1;
+            }
+        };
+        var displayOption = function(el) {
+            el.lastElementChild.style.opacity = 1;
+        };
+        var undesplayOption = function(el) {
+            el.lastElementChild.style.opacity = 0.25;
+        };
+        console.log(localStorage.getItem(day));
+        var switchDay = function(el) {
+            updateDOM(el.innerText);
+            day = el.innerText;
+            var id = Number(el.id);
+            for (i = 0; i < 7; i++) {
+                if (i === id) {
+                    continue;
+                }
+                $id("" + i).style.backgroundColor = 'whitesmoke';
+            }
+            $id("" + id).style.backgroundColor = 'rgba(100,200,255,0.4)';
+        };
+        var taskComplited = function(domID, param) {
+            var local = JSON.parse(storage.getItem(param));
+            var editable = local.find(function(data) {
+                return data.id === domID;
+            });
+            editable.completed = true;
+            localStorage.setItem(param, JSON.stringify(local));
+            return updateDOM(param);
+        };
+        var addTask = function() {
+            if (editMode === false) {
+                var task = {
+                    id: randomId(),
+                    title: added.title.value,
+                    goal: added.goal.value,
+                    completed: false
+                };
+                if (storage.getItem(day) === null) {
+                    storage.setItem(day, JSON.stringify([]));
+                }
+                var local = JSON.parse(storage.getItem(day));
+                local.push(task);
+                storage.setItem(day, JSON.stringify(local));
+                updateDOM(day);
+            } else {
+                var local = JSON.parse(storage.getItem(day));
+                var editable = local.find(function(data) {
+                    return data.id === added.id.value;
+                });
+                editable.title = added.title.value;
+                editable.goal = added.goal.value;
+                editable.id = added.id.value;
+                storage.setItem(day, JSON.stringify(local));
+                updateDOM(day);
+            }
+            closeAdder();
+        };
+        updateDOM(day);
+        var deleteTask = function(domID, param) {
+            var local = JSON.parse(storage.getItem(param));
+            var deletable = local.filter(function(data) {
+                return data.id != domID;
+            });
+            var reload = JSON.stringify(deletable);
+            localStorage.setItem(param, reload);
+            return updateDOM(param);
+        };
+        var taskCopiedAlert = function() {
+            $id('tooltip').style.display = 'block';
+            setTimeout(function() {
+                $id('tooltip').style.display = 'none';
+            }, 500);
+        };
+        var copyTask = function(domID, param) {
+            taskCopiedAlert();
+            editMode = true;
+            var local = JSON.parse(storage.getItem(param));
+            var editable = local.find(function(data) {
+                return data.id === domID;
+            });
+            added.title.value = editable.title;
+            added.goal.value = editable.goal;
+            added.id.value = editable.id;
+        };
+        var editClicked = function(domID, param) {
+            copyTask(domID, param);
+            $id('form').style.display = 'block';
+        };
+    </script>
 </body>
 
 </html>
