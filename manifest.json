@@ -1,6 +1,6 @@
 {
-    "name": "Stick-it Notes by Tharun",
-    "short_name": "Stick-it",
+    "name": "every day made simple",
+    "short_name": "dailyGoals",
     "start_url": "index.html",
     "scope": "./",
     "icons": [{
@@ -14,7 +14,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffd31d",
+    "theme_color": "rgb(230,230,230)",
     "background_color": "#333",
     "display": "standalone"
 }
