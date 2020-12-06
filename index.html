@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="manifest.json">
     <title></title>
 </head>
 
@@ -151,7 +152,7 @@
         
         * {
             margin: 0px;
-            font-family:roboto;
+            font-family: cursive;
             font-size: 17px;
             transition-duration: 1s;
         }
@@ -245,6 +246,13 @@
     </div>
     <div id="tooltip">task copied to task adder</div>
     <script>
+        if ("serviceWorker" in navigator) {
+            // register service worker
+            navigator.serviceWorker.register("service-worker.js");
+        }
+        //service worker end
+
+
         var $id = function(a) {
             return document.getElementById(a);
         };
